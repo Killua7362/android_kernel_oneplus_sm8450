@@ -4,3 +4,5 @@
 	obj-y	+= oplus_nu1619.o
 	obj-y	+= oplus_chargepump.o
 
+ccflags-y += -Werror $(call cc-disable-warning, enum-compare )
+
