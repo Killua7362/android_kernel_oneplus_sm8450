@@ -336,3 +336,5 @@ obj-y += oplus_ufcs.o
 obj-y += oplus_chg_exception.o
 obj-y += bob_ic/oplus_tps6128xd.o
 endif # gki_support
+
+ccflags-y += -Werror $(call cc-disable-warning, enum-compare )

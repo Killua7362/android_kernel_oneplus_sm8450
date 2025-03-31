@@ -296,3 +296,5 @@ else
 endif
 
 	obj-y   += oplus_short_ic.o
+ccflags-y += -Werror $(call cc-disable-warning, enum-compare )
+
