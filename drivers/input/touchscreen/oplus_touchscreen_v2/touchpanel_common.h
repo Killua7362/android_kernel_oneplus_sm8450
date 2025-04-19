@@ -31,7 +31,7 @@
 #endif
 
 #define TP_SUPPORT_MAX 3
-#define TP_NAME_SIZE_MAX 25
+#define TP_NAME_SIZE_MAX 32
 
 #define TP_MSG_SIZE_MAX 32
 

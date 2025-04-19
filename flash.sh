@@ -12,18 +12,12 @@ function compile()
     export KBUILD_BUILD_USER="killua"
     export LOCALVERSION="-v1.0"
 
-    # Define Clang directory
-    export CLANG_DIR="~/repo/clang18/bin/clang-18"
-    # Clone Clang if missing
- #   if [ ! -f "$CLANG_DIR/bin/clang" ]; then
-  #      echo "[*] Cloning Clang..."
-  #      git clone --depth=1 https://github.com/Kdrag0n/proton-clang.git "$CLANG_DIR"
-  #  fi
 
-    # Set Clang Paths
-    export PATH="${CLANG_DIR}/bin:${PATH}"
-    export CC=clang
-    export CLANG_TRIPLE=aarch64-linux-gnu
+    export CLANG_ROOT=~/repo/clang18
+    export CLANG_PATH=${CLANG_ROOT}/bin
+    export PATH=${CLANG_PATH}:${PATH}
+    export LD_LIBRARY_PATH=${CLANG_ROOT}/lib64:$LD_LIBRARY_PATH
+    export CLANG_TRIPLE=aarch64-linux-gnu-
     export LLVM=1
     export LLVM_IAS=1
 
@@ -31,8 +25,8 @@ function compile()
     # mkdir -p out
 
     # Compile Kernel
-    make O=out ARCH=arm64 CC=clang gki_defconfig vendor/waipio_GKI.config vendor/oplus_GKI.config vendor/debugfs.config
-    make O=out ARCH=arm64 CC=clang -j$(nproc)
+    make O=out ARCH=arm64 CC="ccache clang" gki_defconfig
+    make O=out ARCH=arm64 CC="ccache clang" -j$(nproc)
 }
 
 compile
